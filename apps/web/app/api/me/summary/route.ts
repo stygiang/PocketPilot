@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { computeSummary } from '@safetospend/core';
-import { prisma, type IncomeSource } from '@safetospend/db';
+import { prisma } from '@safetospend/db';
+import type { IncomeSource } from '@prisma/client';
 import { ensureUser } from '@/lib/ensure-user';
 import { requireUserId, unauthorized } from '@/lib/auth';
 import { formatDateKey, getPayWindow } from '@/lib/dates';
