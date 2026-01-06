@@ -385,12 +385,6 @@ export default function MarketingPage() {
         </Container>
       </footer>
 
-      <AuthModal
-        open={authOpen}
-        mode={authMode}
-        onClose={() => setAuthOpen(false)}
-        onModeChange={setAuthMode}
-      />
     </main>
   );
 }
