@@ -5,6 +5,33 @@ import { ensureUser } from '@/lib/ensure-user';
 import { requireUserId, unauthorized } from '@/lib/auth';
 import { formatDateKey, getPayWindow } from '@/lib/dates';
 
+type IncomeSourceRow = {
+  id: string;
+  name: string;
+  amountCents: number;
+  cadence: string;
+  nextPayDate: Date;
+  active: boolean;
+};
+
+type BillRow = {
+  id: string;
+  name: string;
+  amountCents: number;
+  cadence: string;
+  dueDayOfMonth: number | null;
+  nextDueDate: Date | null;
+  active: boolean;
+};
+
+type ExpenseRow = {
+  id: string;
+  amountCents: number;
+  date: Date;
+  category: string | null;
+  note: string | null;
+};
+
 export const GET = async () => {
   try {
     const userId = await requireUserId();
@@ -28,7 +55,7 @@ export const GET = async () => {
       }),
     ]);
 
-    const primaryIncome = incomeSources.find((source: { active: boolean }) => source.active);
+    const primaryIncome = incomeSources.find((source: IncomeSourceRow) => source.active);
     const now = new Date();
     const expenses = primaryIncome
       ? await prisma.expense.findMany({
@@ -47,7 +74,7 @@ export const GET = async () => {
       nowISO: now.toISOString(),
       timezone,
       balanceCents: balanceSnapshot?.balanceCents ?? 0,
-      incomeSources: incomeSources.map((source) => ({
+      incomeSources: incomeSources.map((source: IncomeSourceRow) => ({
         id: source.id,
         name: source.name,
         amountCents: source.amountCents,
@@ -55,7 +82,7 @@ export const GET = async () => {
         nextPayDate: formatDateKey(source.nextPayDate, timezone),
         active: source.active,
       })),
-      bills: bills.map((bill) => ({
+      bills: bills.map((bill: BillRow) => ({
         id: bill.id,
         name: bill.name,
         amountCents: bill.amountCents,
@@ -64,7 +91,7 @@ export const GET = async () => {
         nextDueDate: bill.nextDueDate ? formatDateKey(bill.nextDueDate, timezone) : null,
         active: bill.active,
       })),
-      expenses: expenses.map((expense) => ({
+      expenses: expenses.map((expense: ExpenseRow) => ({
         id: expense.id,
         amountCents: expense.amountCents,
         date: formatDateKey(expense.date, timezone),
