@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-sand text-ink font-body;
+  min-height: 100vh;
+  background-image: radial-gradient(circle at top, rgba(246, 198, 71, 0.25), transparent 60%),
+    linear-gradient(135deg, rgba(226, 169, 59, 0.2), transparent 60%);
+}
+
+h1, h2, h3, h4 {
+  @apply font-display uppercase tracking-wide;
+}
+
+.card {
+  @apply rounded-2xl border border-black/10 bg-white/80 p-6 shadow-sm backdrop-blur;
+}
+
+input, select {
+  @apply w-full rounded-lg border border-black/20 bg-white px-3 py-2 text-sm;
+}
+
+button {
+  @apply rounded-lg px-4 py-2 text-sm font-medium transition;
+}
+
+button.primary {
+  @apply bg-sun text-ink hover:bg-amber;
+}
+
+button.secondary {
+  @apply border border-dusk text-ink hover:bg-dusk hover:text-white;
+}

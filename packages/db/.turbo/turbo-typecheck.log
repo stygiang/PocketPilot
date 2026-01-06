@@ -1,0 +1,4 @@
+
+> @safetospend/db@0.0.0 typecheck C:\Users\shane\Desktop\projects\Safe to spend\safetospend\packages\db
+> tsc -p tsconfig.json
+

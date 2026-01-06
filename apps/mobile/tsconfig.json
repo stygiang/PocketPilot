@@ -1,0 +1,9 @@
+{
+  "extends": "../../packages/tsconfig/base.json",
+  "compilerOptions": {
+    "jsx": "react-native",
+    "moduleResolution": "Bundler",
+    "types": ["expo-router/types"]
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}

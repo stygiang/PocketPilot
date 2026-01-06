@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Safe to Spend",
+    "slug": "safetospend",
+    "scheme": "safetospend",
+    "icon": "./assets/logo.png",
+    "splash": {
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#f6f2e9"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#f6f2e9"
+      }
+    },
+    "plugins": ["expo-router"],
+    "jsEngine": "hermes",
+    "sdkVersion": "54.0.0",
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    }
+  }
+}

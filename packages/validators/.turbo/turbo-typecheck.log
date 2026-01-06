@@ -1,0 +1,4 @@
+
+> @safetospend/validators@0.0.0 typecheck C:\Users\shane\Desktop\projects\Safe to spend\safetospend\packages\validators
+> tsc -p tsconfig.json
+

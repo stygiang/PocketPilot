@@ -1,0 +1,4 @@
+
+> web@0.0.0 typecheck C:\Users\shane\Desktop\projects\Safe to spend\safetospend\apps\web
+> tsc -p tsconfig.json
+
