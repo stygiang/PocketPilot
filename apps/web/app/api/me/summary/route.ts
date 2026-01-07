@@ -35,12 +35,12 @@ type ExpenseRow = {
 export const GET = async () => {
   try {
     const userId = await requireUserId();
-    const user = await ensureUser(userId);
+    await ensureUser(userId);
 
     const settings = await prisma.settings.findUnique({ where: { userId } });
     const timezone = settings?.timezone ?? 'UTC';
 
-    const [balanceSnapshot, incomeSources, bills] = await Promise.all([
+    const [balanceSnapshot, incomeSources, bills, subscription] = await Promise.all([
       prisma.balanceSnapshot.findFirst({
         where: { userId },
         orderBy: { createdAt: 'desc' },
@@ -53,6 +53,7 @@ export const GET = async () => {
         where: { userId, active: true },
         orderBy: { createdAt: 'desc' },
       }),
+      prisma.subscription.findUnique({ where: { userId } }),
     ]);
 
     const primaryIncome = incomeSources.find((source: IncomeSourceRow) => source.active);
@@ -114,7 +115,7 @@ export const GET = async () => {
       bills,
       expenses,
       settings,
-      subscription: user.subscription,
+      subscription,
     });
   } catch (error) {
     if ((error as Error).message === 'UNAUTHORIZED') {
