@@ -151,7 +151,7 @@ export default function MarketingPage() {
                 alt="PocketPilot"
                 width={190}
                 height={80}
-                className="h-[135px] w-auto"
+                className="h-[60px] w-auto"
               />
               <span className="sr-only">PocketPilot</span>
             </Link>
@@ -368,7 +368,7 @@ export default function MarketingPage() {
                   alt="PocketPilot"
                   width={190}
                   height={48}
-                  className="h-8 w-auto"
+                  className="h-12 w-auto"
                 />
                 <div className="mt-2 text-xs text-black/50">Spend smarter, not harder.</div>
               </div>
