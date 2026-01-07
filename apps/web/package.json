@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint app components lib",
-    "typecheck": "tsc -p tsconfig.json"
+    "typecheck": "tsc -p tsconfig.json",
+    "postinstall": "pnpm -C ../../packages/db prisma:generate"
   },
   "dependencies": {
     "@safetospend/core": "workspace:*",
