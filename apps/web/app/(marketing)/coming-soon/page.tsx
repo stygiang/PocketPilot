@@ -2,19 +2,20 @@ import Image from 'next/image';
 
 export default function ComingSoonPage() {
   return (
-    <main className="relative min-h-screen text-ink">
+    <main className="relative min-h-[100svh] text-ink">
       <Image
         src="/coming-soon-landing.png"
         alt="PocketPilot coming soon background"
         fill
         priority
-        className="object-cover"
+        sizes="100vw"
+        className="object-cover object-center"
       />
       <div className="absolute inset-0 bg-black/25" />
       <div className="pointer-events-none absolute left-6 top-6 h-24 w-24 rounded-full border border-white/30" />
       <div className="pointer-events-none absolute left-10 top-10 h-16 w-16 rounded-full border border-white/30" />
 
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
+      <div className="relative z-10 flex min-h-[100svh] items-center justify-center px-6 py-12">
         <section className="w-full max-w-4xl text-center text-white">
           <div className="flex items-center justify-center">
             <Image
