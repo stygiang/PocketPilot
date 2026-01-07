@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { computeSummary } from '@safetospend/core';
+import { computeSummary, type Bill as CoreBill, type Cadence, type Expense as CoreExpense, type IncomeSource as CoreIncomeSource } from '@safetospend/core';
 import { prisma } from '@safetospend/db';
 import { ensureUser } from '@/lib/ensure-user';
 import { requireUserId, unauthorized } from '@/lib/auth';
@@ -9,7 +9,7 @@ type IncomeSourceRow = {
   id: string;
   name: string;
   amountCents: number;
-  cadence: string;
+  cadence: Cadence;
   nextPayDate: Date;
   active: boolean;
 };
@@ -18,7 +18,7 @@ type BillRow = {
   id: string;
   name: string;
   amountCents: number;
-  cadence: string;
+  cadence: Cadence;
   dueDayOfMonth: number | null;
   nextDueDate: Date | null;
   active: boolean;
@@ -70,34 +70,40 @@ export const GET = async () => {
         })
       : [];
 
+    const incomeSourceInputs: CoreIncomeSource[] = incomeSources.map((source: IncomeSourceRow) => ({
+      id: source.id,
+      name: source.name,
+      amountCents: source.amountCents,
+      cadence: source.cadence,
+      nextPayDate: formatDateKey(source.nextPayDate, timezone),
+      active: source.active,
+    }));
+
+    const billInputs: CoreBill[] = bills.map((bill: BillRow) => ({
+      id: bill.id,
+      name: bill.name,
+      amountCents: bill.amountCents,
+      cadence: bill.cadence,
+      dueDayOfMonth: bill.dueDayOfMonth ?? null,
+      nextDueDate: bill.nextDueDate ? formatDateKey(bill.nextDueDate, timezone) : null,
+      active: bill.active,
+    }));
+
+    const expenseInputs: CoreExpense[] = expenses.map((expense: ExpenseRow) => ({
+      id: expense.id,
+      amountCents: expense.amountCents,
+      date: formatDateKey(expense.date, timezone),
+      category: expense.category ?? null,
+      note: expense.note ?? null,
+    }));
+
     const summary = computeSummary({
       nowISO: now.toISOString(),
       timezone,
       balanceCents: balanceSnapshot?.balanceCents ?? 0,
-      incomeSources: incomeSources.map((source: IncomeSourceRow) => ({
-        id: source.id,
-        name: source.name,
-        amountCents: source.amountCents,
-        cadence: source.cadence,
-        nextPayDate: formatDateKey(source.nextPayDate, timezone),
-        active: source.active,
-      })),
-      bills: bills.map((bill: BillRow) => ({
-        id: bill.id,
-        name: bill.name,
-        amountCents: bill.amountCents,
-        cadence: bill.cadence,
-        dueDayOfMonth: bill.dueDayOfMonth ?? null,
-        nextDueDate: bill.nextDueDate ? formatDateKey(bill.nextDueDate, timezone) : null,
-        active: bill.active,
-      })),
-      expenses: expenses.map((expense: ExpenseRow) => ({
-        id: expense.id,
-        amountCents: expense.amountCents,
-        date: formatDateKey(expense.date, timezone),
-        category: expense.category ?? null,
-        note: expense.note ?? null,
-      })),
+      incomeSources: incomeSourceInputs,
+      bills: billInputs,
+      expenses: expenseInputs,
       plannedSavingsCentsPerPaycheck: settings?.plannedSavingsCentsPerPaycheck ?? 0,
     });
 
