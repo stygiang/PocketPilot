@@ -11,13 +11,15 @@ export const middleware = (request: NextRequest) => {
   const comingSoonEnabled = process.env.COMING_SOON_MODE === 'true';
 
   if (comingSoonEnabled) {
+    const isStaticAsset = pathname.includes('.') && !pathname.startsWith('/api');
     const isAllowed =
       pathname.startsWith('/api') ||
       pathname.startsWith('/_next') ||
       pathname.startsWith('/coming-soon') ||
       pathname.startsWith('/privacy') ||
       pathname.startsWith('/terms') ||
-      pathname === '/favicon.ico';
+      pathname === '/favicon.ico' ||
+      isStaticAsset;
     if (!isAllowed) {
       const url = request.nextUrl.clone();
       url.pathname = '/coming-soon';
