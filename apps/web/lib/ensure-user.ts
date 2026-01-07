@@ -6,44 +6,28 @@ export const ensureUser = async (userId: string) => {
     include: { settings: true, subscription: true },
   });
 
-  if (existing) {
-    if (!existing.settings) {
-      await prisma.settings.create({
-        data: {
-          userId,
-          timezone: 'UTC',
-          plannedSavingsCentsPerPaycheck: 0,
-        },
-      });
-    }
-
-    if (!existing.subscription) {
-      await prisma.subscription.create({
-        data: {
-          userId,
-          status: 'FREE',
-        },
-      });
-    }
-
-    return existing;
+  if (!existing) {
+    throw new Error('USER_NOT_FOUND');
   }
 
-  return prisma.user.create({
-    data: {
-      id: userId,
-      settings: {
-        create: {
-          timezone: 'UTC',
-          plannedSavingsCentsPerPaycheck: 0,
-        },
+  if (!existing.settings) {
+    await prisma.settings.create({
+      data: {
+        userId,
+        timezone: 'UTC',
+        plannedSavingsCentsPerPaycheck: 0,
       },
-      subscription: {
-        create: {
-          status: 'FREE',
-        },
+    });
+  }
+
+  if (!existing.subscription) {
+    await prisma.subscription.create({
+      data: {
+        userId,
+        status: 'FREE',
       },
-    },
-    include: { settings: true, subscription: true },
-  });
+    });
+  }
+
+  return existing;
 };
