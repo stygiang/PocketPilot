@@ -8,6 +8,23 @@ const isPublicApi = (pathname: string) =>
 
 export const middleware = (request: NextRequest) => {
   const { pathname } = request.nextUrl;
+  const comingSoonEnabled = process.env.COMING_SOON_MODE === 'true';
+
+  if (comingSoonEnabled) {
+    const isAllowed =
+      pathname.startsWith('/api') ||
+      pathname.startsWith('/_next') ||
+      pathname.startsWith('/coming-soon') ||
+      pathname.startsWith('/privacy') ||
+      pathname.startsWith('/terms') ||
+      pathname === '/favicon.ico';
+    if (!isAllowed) {
+      const url = request.nextUrl.clone();
+      url.pathname = '/coming-soon';
+      return NextResponse.redirect(url);
+    }
+  }
+
   const session = request.cookies.get('sst_session')?.value;
 
   if (pathname.startsWith('/api')) {
