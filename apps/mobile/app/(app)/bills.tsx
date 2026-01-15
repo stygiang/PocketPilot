@@ -1,45 +1,49 @@
-import { useEffect, useState } from 'react';
-import { ScrollView, Text, View, StyleSheet } from 'react-native';
-import { apiFetch } from '../../lib/api';
+import { View, Text, StyleSheet, StatusBar, SafeAreaView } from 'react-native';
+import { colors, spacing, typography } from '../../styles/tokens';
 
 export default function BillsScreen() {
-  const [bills, setBills] = useState<Array<{ id: string; name: string; amountCents: number }>>([]);
-
-  useEffect(() => {
-    const load = async () => {
-      const data = await apiFetch('/api/bills');
-      setBills(data);
-    };
-    load();
-  }, []);
-
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Bills</Text>
-      {bills.length === 0 ? (
-        <Text style={styles.empty}>No bills yet.</Text>
-      ) : (
-        bills.map((bill) => (
-          <View key={bill.id} style={styles.card}>
-            <Text style={styles.cardTitle}>{bill.name}</Text>
-            <Text style={styles.cardText}>${(bill.amountCents / 100).toFixed(2)}</Text>
-          </View>
-        ))
-      )}
-    </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
+
+      <View style={styles.content}>
+        <Text style={styles.title}>Bills</Text>
+        <Text style={styles.subtitle}>Coming soon</Text>
+        <Text style={styles.description}>
+          Track your recurring bills and subscriptions in one place.
+        </Text>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20, gap: 12 },
-  title: { fontSize: 24, fontWeight: '600' },
-  card: {
-    borderWidth: 1,
-    borderColor: '#e0d9cf',
-    borderRadius: 12,
-    padding: 12,
+  container: {
+    flex: 1,
+    backgroundColor: colors.bgPrimary,
   },
-  cardTitle: { fontSize: 16, fontWeight: '600' },
-  cardText: { marginTop: 4, color: '#666' },
-  empty: { color: '#666' },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: spacing[6],
+  },
+  title: {
+    fontSize: typography.fontSize['3xl'],
+    fontWeight: typography.fontWeight.bold,
+    color: colors.textPrimary,
+    marginBottom: spacing[2],
+  },
+  subtitle: {
+    fontSize: typography.fontSize.xl,
+    fontWeight: typography.fontWeight.semibold,
+    color: colors.brandPrimary,
+    marginBottom: spacing[4],
+  },
+  description: {
+    fontSize: typography.fontSize.base,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    lineHeight: typography.fontSize.base * 1.5,
+  },
 });

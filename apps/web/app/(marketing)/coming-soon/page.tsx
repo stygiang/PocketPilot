@@ -1,49 +1,106 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
+import styles from './page.module.scss';
 
 export default function ComingSoonPage() {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'exists' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus('loading');
+    setMessage('');
+    const formData = new FormData(event.currentTarget);
+    const email = String(formData.get('email') || '').trim();
+    if (!email) {
+      setStatus('error');
+      setMessage('Please enter a valid email.');
+      return;
+    }
+
+    const res = await fetch('/api/mailchimp/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      setStatus('error');
+      setMessage(data?.error || 'Unable to subscribe right now.');
+      return;
+    }
+
+    if (data?.status === 'exists') {
+      setStatus('exists');
+      setMessage('You are already on the list.');
+      return;
+    }
+
+    setStatus('success');
+    setMessage('You are in. We will email you soon.');
+    event.currentTarget.reset();
+  };
+
   return (
-    <main className="relative min-h-[100svh] text-ink">
+    <main className={styles.main}>
       <Image
         src="/coming-soon-landing.png"
         alt="PocketPilot coming soon background"
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center"
+        className={styles.backgroundImage}
       />
-      <div className="absolute inset-0 bg-black/25" />
-      <div className="pointer-events-none absolute left-6 top-6 h-24 w-24 rounded-full border border-white/30" />
-      <div className="pointer-events-none absolute left-10 top-10 h-16 w-16 rounded-full border border-white/30" />
+      <div className={styles.overlay} />
+      <div className={styles.decorCircle1} />
+      <div className={styles.decorCircle2} />
 
-      <div className="relative z-10 flex min-h-[100svh] items-center justify-center px-6 py-12">
-        <section className="w-full max-w-4xl text-center text-white">
-          <div className="flex items-center justify-center">
+      <div className={styles.content}>
+        <section className={styles.section}>
+          <div className={styles.logoWrapper}>
             <Image
               src="/pocketpilot-logo.png"
               alt="PocketPilot"
               width={220}
               height={70}
-              className="h-12 w-auto"
+              className={styles.logo}
             />
             <span className="sr-only">PocketPilot</span>
           </div>
-          <h1 className="mt-8 text-4xl font-display leading-tight md:text-5xl">
+          <h1 className={styles.heading}>
             We are almost ready to launch.
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-white/80 md:text-base">
+          <p className={styles.description}>
             Subscribe to be the first to know about updates and get early access perks.
           </p>
-          <form className="mx-auto mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
+          <form
+            className={styles.form}
+            onSubmit={onSubmit}
+          >
             <input
               type="email"
               name="email"
               placeholder="Please enter your email address"
-              className="h-12 flex-1 rounded-full border border-white/40 bg-white/90 px-4 text-sm text-ink placeholder:text-ink/50"
+              className={styles.emailInput}
+              disabled={status === 'loading'}
+              required
             />
-            <button type="submit" className="h-12 rounded-full bg-sun px-6 text-sm font-semibold text-ink">
-              Subscribe
+            <button
+              type="submit"
+              className={styles.submitButton}
+              disabled={status === 'loading'}
+            >
+              {status === 'loading' ? 'Submitting...' : 'Subscribe'}
             </button>
           </form>
+          {message ? (
+            <div className={styles.message}>
+              {message}
+            </div>
+          ) : null}
         </section>
       </div>
     </main>

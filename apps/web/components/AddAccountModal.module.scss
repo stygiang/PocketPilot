@@ -1,0 +1,391 @@
+@import '../styles/design-tokens';
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: $overlay-dark;
+  z-index: $z-modal-backdrop;
+  backdrop-filter: blur($blur-sm);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 560px;
+  max-height: 90vh;
+  background: $bg-secondary;
+  border: 1px solid $border-medium;
+  border-radius: $radius-xl;
+  z-index: $z-modal;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-4 $space-5;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.backButton,
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  border-radius: $radius-md;
+  color: $text-secondary;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $bg-elevated;
+    color: $text-primary;
+  }
+}
+
+.stepIndicator {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.stepDot {
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-full;
+  background: $bg-elevated;
+  transition: all $transition-base;
+
+  &.active {
+    background: $brand-primary;
+    width: 24px;
+  }
+
+  &.completed {
+    background: $success;
+  }
+}
+
+.stepContent {
+  padding: $space-6;
+  overflow-y: auto;
+  max-height: calc(90vh - 80px);
+}
+
+.stepTitle {
+  font-size: $text-xl;
+  font-weight: $font-bold;
+  color: $text-primary;
+  margin: 0 0 $space-2 0;
+}
+
+.stepDescription {
+  font-size: $text-sm;
+  color: $text-tertiary;
+  margin: 0 0 $space-6 0;
+}
+
+// Type Selection
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-3;
+
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.typeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-4;
+  background: $bg-tertiary;
+  border: 2px solid transparent;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $bg-elevated;
+    border-color: $border-medium;
+  }
+
+  &.selected {
+    background: rgba($brand-primary, 0.1);
+    border-color: $brand-primary;
+  }
+}
+
+.typeIcon {
+  font-size: 24px;
+}
+
+.typeLabel {
+  font-size: $text-xs;
+  font-weight: $font-medium;
+  color: $text-secondary;
+  text-align: center;
+
+  .selected & {
+    color: $brand-primary;
+  }
+}
+
+// Tracking Options
+.trackingOptions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-4;
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trackingCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-3;
+  padding: $space-5;
+  background: $bg-tertiary;
+  border: 2px solid transparent;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-base;
+  text-align: left;
+
+  &:hover {
+    background: $bg-elevated;
+    border-color: $border-medium;
+  }
+
+  &.selected {
+    background: rgba($brand-primary, 0.1);
+    border-color: $brand-primary;
+  }
+}
+
+.trackingHeader {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  width: 100%;
+}
+
+.trackingIcon {
+  font-size: 20px;
+}
+
+.trackingTitle {
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  color: $text-primary;
+}
+
+.proBadge {
+  margin-left: auto;
+  padding: $space-1 $space-2;
+  background: linear-gradient(135deg, $brand-primary 0%, $brand-tertiary 100%);
+  border-radius: $radius-sm;
+  font-size: 10px;
+  font-weight: $font-bold;
+  color: $text-inverse;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.trackingDescription {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $leading-relaxed;
+  margin: 0;
+}
+
+.trackingFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  li {
+    font-size: $text-xs;
+    color: $text-tertiary;
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+
+    &::before {
+      content: '✓';
+      color: $success;
+      font-size: 10px;
+    }
+  }
+}
+
+// Details Form
+.detailsForm {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.formLabel {
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: $text-secondary;
+}
+
+.formInput {
+  width: 100%;
+  padding: $space-3 $space-4;
+  background: $bg-primary;
+  border: 1px solid $border-medium;
+  border-radius: $radius-md;
+  color: $text-primary;
+  font-size: $text-sm;
+  transition: all $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $brand-primary;
+    box-shadow: 0 0 0 3px rgba($brand-primary, 0.1);
+  }
+
+  &::placeholder {
+    color: $text-tertiary;
+  }
+}
+
+.bankSelector {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.popularBanks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.bankChip {
+  padding: $space-1 $space-3;
+  background: $bg-tertiary;
+  border: 1px solid $border-medium;
+  border-radius: $radius-full;
+  font-size: $text-xs;
+  font-weight: $font-medium;
+  color: $text-secondary;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $bg-elevated;
+    border-color: $border-strong;
+  }
+
+  &.selected {
+    background: rgba($brand-primary, 0.15);
+    color: $brand-primary;
+  }
+}
+
+.currencyInput,
+.percentInput {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .formInput {
+    padding-left: $space-8;
+  }
+}
+
+.currencySymbol {
+  position: absolute;
+  left: $space-4;
+  color: $text-tertiary;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  pointer-events: none;
+}
+
+.percentInput {
+  .formInput {
+    padding-left: $space-4;
+    padding-right: $space-8;
+  }
+}
+
+.percentSymbol {
+  position: absolute;
+  right: $space-4;
+  color: $text-tertiary;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  pointer-events: none;
+}
+
+.securityNote {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-3;
+  background: rgba($success, 0.1);
+  border-radius: $radius-md;
+  color: $success;
+  font-size: $text-xs;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.formActions {
+  padding-top: $space-4;
+  border-top: 1px solid $border-subtle;
+  margin-top: $space-2;
+}
+
+.submitButton {
+  width: 100%;
+  padding: $space-4;
+  background: $brand-primary;
+  border: none;
+  border-radius: $radius-md;
+  color: $text-inverse;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $brand-primary-hover;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}

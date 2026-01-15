@@ -1,0 +1,27 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.main {
+  padding: 4rem 1.5rem;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 48rem;
+}
+
+.backLink {
+  font-size: $font-size-sm;
+  text-decoration: underline;
+}
+
+.heading {
+  margin-top: $spacing-6;
+  font-size: $font-size-4xl;
+}
+
+.paragraph {
+  margin-top: $spacing-4;
+  font-size: $font-size-sm;
+  color: rgba($black, 0.7);
+}

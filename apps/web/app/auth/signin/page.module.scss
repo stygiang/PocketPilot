@@ -1,0 +1,219 @@
+@import '../../../styles/design-tokens';
+
+.main {
+  min-height: 100vh;
+  background: $bg-primary;
+  padding: $space-6;
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-4;
+  }
+}
+
+.container {
+  max-width: 440px;
+  margin: 0 auto;
+  padding-top: $space-8;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  color: $text-secondary;
+  font-size: $text-base;
+  font-weight: $font-medium;
+  text-decoration: none;
+  margin-bottom: $space-8;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+.header {
+  margin-bottom: $space-8;
+}
+
+.title {
+  font-size: $text-3xl;
+  font-weight: $font-bold;
+  color: $text-primary;
+  margin-bottom: $space-3;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $leading-relaxed;
+  text-align: center;
+}
+
+.appleButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  padding: $space-4 $space-6;
+  background: $text-primary;
+  color: $text-inverse;
+  border: none;
+  border-radius: $radius-xl;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  cursor: pointer;
+  transition: all $transition-base;
+  margin-bottom: $space-6;
+
+  &:hover {
+    background: darken($text-primary, 5%);
+    transform: translateY(-1px);
+    box-shadow: $shadow-lg;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.appleIcon {
+  font-size: $text-xl;
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: $space-6 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background: $border-subtle;
+  }
+
+  span {
+    position: relative;
+    display: inline-block;
+    padding: 0 $space-4;
+    background: $bg-primary;
+    font-size: $text-xs;
+    font-weight: $font-semibold;
+    text-transform: uppercase;
+    letter-spacing: $tracking-wider;
+    color: $text-tertiary;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.error {
+  padding: $space-3 $space-4;
+  background: $error-bg;
+  border: 1px solid rgba($error, 0.3);
+  border-radius: $radius-lg;
+  color: $error;
+  font-size: $text-sm;
+  text-align: center;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.input {
+  width: 100%;
+  padding: $space-4 $space-4;
+  background: $bg-tertiary;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-lg;
+  color: $text-primary;
+  font-size: $text-base;
+  transition: all $transition-base;
+
+  &::placeholder {
+    color: $text-tertiary;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $brand-primary;
+    box-shadow: 0 0 0 3px rgba(74, 143, 231, 0.1);
+  }
+}
+
+.submitButton {
+  width: 100%;
+  padding: $space-4 $space-6;
+  background: $brand-primary;
+  color: $text-primary;
+  border: none;
+  border-radius: $radius-xl;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  cursor: pointer;
+  transition: all $transition-base;
+  margin-top: $space-2;
+
+  &:hover:not(:disabled) {
+    background: $brand-primary-hover;
+    transform: translateY(-1px);
+    box-shadow: $glow-blue;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.forgotPassword {
+  text-align: center;
+  margin-top: $space-6;
+
+  a {
+    color: $brand-primary;
+    font-size: $text-sm;
+    font-weight: $font-medium;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $brand-primary-hover;
+    }
+  }
+}
+
+.signUpLink {
+  text-align: center;
+  font-size: $text-sm;
+  color: $text-secondary;
+  margin-top: $space-8;
+
+  a {
+    color: $text-primary;
+    font-weight: $font-medium;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $brand-primary;
+    }
+  }
+}

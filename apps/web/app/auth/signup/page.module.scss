@@ -1,0 +1,171 @@
+@import '../../../styles/design-tokens';
+
+.main {
+  min-height: 100vh;
+  background: $bg-primary;
+  padding: $space-6;
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-4;
+  }
+}
+
+.container {
+  max-width: 440px;
+  margin: 0 auto;
+  padding-top: $space-8;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  color: $text-secondary;
+  font-size: $text-base;
+  font-weight: $font-medium;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: $space-6;
+  cursor: pointer;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+.progress {
+  height: 3px;
+  background: $bg-tertiary;
+  border-radius: $radius-full;
+  margin-bottom: $space-8;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, $brand-primary, $brand-secondary);
+  border-radius: $radius-full;
+  transition: width $transition-slow;
+}
+
+.header {
+  margin-bottom: $space-8;
+}
+
+.title {
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+  color: $text-primary;
+  margin-bottom: $space-2;
+}
+
+.subtitle {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $leading-relaxed;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.error {
+  padding: $space-3 $space-4;
+  background: $error-bg;
+  border: 1px solid rgba($error, 0.3);
+  border-radius: $radius-lg;
+  color: $error;
+  font-size: $text-sm;
+  text-align: center;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.label {
+  font-size: $text-xs;
+  font-weight: $font-semibold;
+  text-transform: uppercase;
+  letter-spacing: $tracking-wider;
+  color: $text-tertiary;
+}
+
+.input {
+  width: 100%;
+  padding: $space-4 $space-4;
+  background: $bg-tertiary;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-lg;
+  color: $text-primary;
+  font-size: $text-base;
+  transition: all $transition-base;
+
+  &::placeholder {
+    color: $text-tertiary;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $brand-primary;
+    box-shadow: 0 0 0 3px rgba(74, 143, 231, 0.1);
+  }
+}
+
+.hint {
+  font-size: $text-xs;
+  color: $text-tertiary;
+}
+
+.submitButton {
+  width: 100%;
+  padding: $space-4 $space-6;
+  background: $brand-primary;
+  color: $text-primary;
+  border: none;
+  border-radius: $radius-xl;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  cursor: pointer;
+  transition: all $transition-base;
+  margin-top: $space-2;
+
+  &:hover:not(:disabled) {
+    background: $brand-primary-hover;
+    transform: translateY(-1px);
+    box-shadow: $glow-blue;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.signInLink {
+  text-align: center;
+  font-size: $text-sm;
+  color: $text-secondary;
+  margin-top: $space-8;
+
+  a {
+    color: $text-primary;
+    font-weight: $font-medium;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $brand-primary;
+    }
+  }
+}

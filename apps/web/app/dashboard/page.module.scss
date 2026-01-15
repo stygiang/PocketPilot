@@ -1,0 +1,119 @@
+@import '../../styles/design-tokens';
+
+.dashboardContainer {
+  display: flex;
+  min-height: 100vh;
+  background: $bg-primary;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.mainContent {
+  flex: 1;
+  margin-left: 240px;
+  padding: $space-6;
+  overflow-x: hidden;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    padding: $space-4;
+  }
+}
+
+.header {
+  margin-bottom: $space-6;
+}
+
+.title {
+  font-size: $text-3xl;
+  font-weight: 700;
+  color: $text-primary;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: $text-2xl;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $space-6;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(6, 1fr);
+    gap: $space-4;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: $space-4;
+  }
+}
+
+.cardLarge {
+  grid-column: span 7;
+  background: $bg-secondary;
+  border: 1px solid $border-medium;
+  border-radius: $radius-lg;
+  padding: $space-5;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: lighten($border-medium, 10%);
+    box-shadow: $shadow-lg;
+  }
+
+  @media (max-width: 1024px) {
+    grid-column: span 6;
+  }
+
+  @media (max-width: 768px) {
+    grid-column: span 1;
+    padding: $space-4;
+  }
+}
+
+.cardMedium {
+  grid-column: span 5;
+  background: $bg-secondary;
+  border: 1px solid $border-medium;
+  border-radius: $radius-lg;
+  padding: $space-5;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: lighten($border-medium, 10%);
+    box-shadow: $shadow-lg;
+  }
+
+  @media (max-width: 1024px) {
+    grid-column: span 6;
+  }
+
+  @media (max-width: 768px) {
+    grid-column: span 1;
+    padding: $space-4;
+  }
+}
+
+.cardFull {
+  grid-column: span 12;
+  background: $bg-secondary;
+  border: 1px solid $border-medium;
+  border-radius: $radius-lg;
+  padding: $space-5;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: lighten($border-medium, 10%);
+    box-shadow: $shadow-lg;
+  }
+
+  @media (max-width: 768px) {
+    padding: $space-4;
+  }
+}

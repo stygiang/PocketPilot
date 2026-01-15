@@ -12,3 +12,11 @@ expo
 .DS_Store
 coverage
 dist
+apps/web/nul
+
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+*.png-snapshots/

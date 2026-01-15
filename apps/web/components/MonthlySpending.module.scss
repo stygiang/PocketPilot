@@ -1,0 +1,89 @@
+@import '../styles/design-tokens';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: $text-lg;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0;
+}
+
+.link {
+  font-size: $text-sm;
+  color: $text-tertiary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $text-secondary;
+  }
+}
+
+.amounts {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.mainAmount {
+  display: flex;
+  align-items: baseline;
+  gap: $space-2;
+}
+
+.currency {
+  font-size: $text-2xl;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.value {
+  font-size: $text-4xl;
+  font-weight: 700;
+  color: $text-primary;
+
+  @media (max-width: 768px) {
+    font-size: $text-3xl;
+  }
+}
+
+.label {
+  font-size: $text-lg;
+  color: $text-secondary;
+  font-weight: 500;
+}
+
+.subAmount {
+  display: flex;
+  align-items: center;
+}
+
+.subLabel {
+  font-size: $text-sm;
+  color: $text-tertiary;
+}
+
+.chartContainer {
+  flex: 1;
+  min-height: 150px;
+  position: relative;
+  margin-top: $space-4;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+}

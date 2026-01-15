@@ -1,0 +1,231 @@
+@import '../styles/design-tokens';
+
+.sideNav {
+  width: 240px;
+  height: 100vh;
+  background: $bg-secondary;
+  border-right: 1px solid $border-medium;
+  display: flex;
+  flex-direction: column;
+  padding: $space-4;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  z-index: 100;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid $border-medium;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: $space-2;
+  margin-bottom: $space-6;
+  cursor: pointer;
+}
+
+.logoImage {
+  height: auto;
+  width: 100%;
+  max-width: 160px;
+  object-fit: contain;
+}
+
+.search {
+  margin-bottom: $space-6;
+}
+
+.searchInput {
+  width: 100%;
+  padding: $space-2 $space-3;
+  background: $bg-input;
+  border: 1px solid $border-medium;
+  border-radius: $radius-md;
+  color: $text-primary;
+  font-size: $text-sm;
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $brand-primary;
+    box-shadow: 0 0 0 3px rgba($brand-primary, 0.1);
+  }
+
+  &::placeholder {
+    color: $text-tertiary;
+  }
+}
+
+.navContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.navSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-2 $space-3;
+  font-size: $text-xs;
+  font-weight: 600;
+  color: $text-tertiary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.expandBtn {
+  background: none;
+  border: none;
+  color: $text-tertiary;
+  cursor: pointer;
+  font-size: 10px;
+  padding: $space-1;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    color: $text-secondary;
+  }
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-2 $space-3;
+  border-radius: $radius-md;
+  color: $text-secondary;
+  text-decoration: none;
+  font-size: $text-sm;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: $bg-elevated;
+    color: $text-primary;
+  }
+
+  &Active {
+    background: $brand-primary;
+    color: white;
+
+    &:hover {
+      background: lighten($brand-primary, 5%);
+    }
+  }
+}
+
+.navIcon {
+  font-size: 18px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navLabel {
+  flex: 1;
+}
+
+.subList {
+  list-style: none;
+  padding: 0 0 0 $space-6;
+  margin: $space-2 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.subItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-2;
+}
+
+.subItemBtn {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  background: none;
+  border: none;
+  color: $text-secondary;
+  font-size: $text-sm;
+  padding: $space-1 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+.subItemIcon {
+  font-size: 8px;
+  color: $text-tertiary;
+}
+
+.subItemLabel {
+  font-weight: 500;
+}
+
+.subItemValue {
+  font-size: $text-sm;
+  color: $text-tertiary;
+  font-weight: 600;
+}
+
+// Mobile styles
+@media (max-width: 768px) {
+  .sideNav {
+    padding: $space-3;
+  }
+
+  .navContent {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $space-2;
+    overflow-x: auto;
+  }
+
+  .navSection {
+    flex-direction: row;
+    min-width: fit-content;
+  }
+
+  .navList {
+    flex-direction: row;
+  }
+
+  .sectionTitle {
+    display: none;
+  }
+
+  .subList {
+    display: none;
+  }
+}

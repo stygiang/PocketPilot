@@ -1,0 +1,160 @@
+@import '../styles/design-tokens';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: $text-lg;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0;
+}
+
+.link {
+  font-size: $text-sm;
+  color: $text-tertiary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $text-secondary;
+  }
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  overflow-y: auto;
+  max-height: 600px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $bg-elevated;
+    border-radius: $radius-full;
+
+    &:hover {
+      background: lighten($bg-elevated, 10%);
+    }
+  }
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-3;
+  border-radius: $radius-md;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: $bg-elevated;
+  }
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.categoryInfo {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+.categoryIcon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: $bg-elevated;
+  border-radius: $radius-md;
+  flex-shrink: 0;
+}
+
+.categoryDetails {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.categoryName {
+  font-size: $text-sm;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.categoryCount {
+  font-size: $text-xs;
+  color: $text-tertiary;
+  background: $bg-tertiary;
+  padding: 2px $space-2;
+  border-radius: $radius-sm;
+}
+
+.categoryAmounts {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.categorySpent {
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.progressBar {
+  height: 6px;
+  background: $bg-tertiary;
+  border-radius: $radius-full;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: $radius-full;
+  transition: width 0.3s ease;
+}
+
+.categoryBudget {
+  font-size: $text-xs;
+  color: $text-tertiary;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .categoryList {
+    max-height: 400px;
+  }
+
+  .categoryName {
+    font-size: $text-xs;
+  }
+
+  .categorySpent {
+    font-size: $text-xs;
+  }
+}

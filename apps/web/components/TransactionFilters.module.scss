@@ -1,0 +1,299 @@
+@import '../styles/design-tokens';
+
+.filtersContainer {
+  display: flex;
+  flex-direction: column;
+  background: $bg-secondary;
+  border: 1px solid $border-medium;
+  border-radius: $radius-lg;
+  margin-bottom: $space-6;
+  overflow: visible;
+}
+
+// Search Row
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-4;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+// Tag-Input Style Search Bar
+.tagInputContainer {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $space-1;
+  min-height: 40px;
+  padding: $space-2 $space-3;
+  padding-right: $space-10;
+  background: $bg-primary;
+  border: 1px solid $border-medium;
+  border-radius: $radius-md;
+  cursor: text;
+  transition: all 0.2s ease;
+
+  &:focus-within {
+    border-color: $brand-primary;
+    background: lighten($bg-primary, 2%);
+  }
+}
+
+.searchIcon {
+  color: $text-tertiary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.inputTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px 2px 8px;
+  background: rgba($brand-primary, 0.15);
+  border-radius: $radius-sm;
+  font-size: 11px;
+  font-weight: 500;
+  color: $brand-primary;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: $brand-primary;
+    font-size: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+      background: rgba($brand-primary, 0.2);
+    }
+  }
+}
+
+.tagInput {
+  flex: 1;
+  min-width: 100px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: $text-primary;
+  font-size: $text-sm;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $text-tertiary;
+  }
+}
+
+.clearAllInputButton {
+  position: absolute;
+  right: $space-3;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg-elevated;
+  border: none;
+  border-radius: $radius-sm;
+  color: $text-tertiary;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: lighten($bg-elevated, 5%);
+    color: $text-primary;
+  }
+}
+
+.filterToggle {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-3 $space-4;
+  background: transparent;
+  border: 1px solid $border-medium;
+  border-radius: $radius-md;
+  color: $text-secondary;
+  font-size: $text-sm;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: $bg-elevated;
+    border-color: lighten($border-medium, 10%);
+    color: $text-primary;
+  }
+
+  &Active {
+    background: $brand-primary;
+    border-color: $brand-primary;
+    color: white;
+
+    &:hover {
+      background: lighten($brand-primary, 5%);
+      border-color: lighten($brand-primary, 5%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.filterBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 $space-1;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+
+  .filterToggle:not(.filterToggleActive) & {
+    background: $brand-primary;
+    color: white;
+  }
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: $space-1;
+}
+
+// Filters Panel
+.filtersPanel {
+  border-top: 1px solid $border-medium;
+  overflow: visible;
+}
+
+.filtersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-4;
+  padding: $space-4;
+  align-items: start;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Active Filters Row
+.activeFiltersRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  padding: $space-3 $space-4;
+  border-top: 1px solid $border-medium;
+  background: rgba($bg-elevated, 0.5);
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.activeFilterTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  flex: 1;
+}
+
+.activeFilterTag {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-1 $space-2 $space-1 $space-3;
+  background: $brand-primary;
+  border-radius: 9999px;
+  font-size: $text-xs;
+  font-weight: 500;
+  color: white;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+.clearAllButton {
+  padding: $space-2 $space-3;
+  background: transparent;
+  border: 1px solid $border-medium;
+  border-radius: $radius-md;
+  color: $text-secondary;
+  font-size: $text-xs;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: $bg-elevated;
+    border-color: lighten($border-medium, 10%);
+    color: $text-primary;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+  }
+}

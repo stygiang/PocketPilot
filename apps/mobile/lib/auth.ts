@@ -1,6 +1,6 @@
 import * as SecureStore from 'expo-secure-store';
 
-const tokenKey = 'sst_token';
+const tokenKey = 'auth_token'; // Changed from 'sst_token' to match demo mode
 
 export const getAuthToken = async () => SecureStore.getItemAsync(tokenKey);
 

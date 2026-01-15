@@ -1,0 +1,62 @@
+// Card component
+.card {
+  border-radius: $radius-2xl;
+  border: 1px solid rgba($black, 0.1);
+  background-color: rgba($white, 0.8);
+  padding: $spacing-6;
+  box-shadow: $shadow-sm;
+  @include backdrop-blur;
+}
+
+// Form elements
+input,
+select {
+  width: 100%;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($black, 0.2);
+  background-color: $white;
+  padding: $spacing-2 $spacing-3;
+  font-size: $font-size-sm;
+  color: $ink;
+  transition: all $transition-base;
+
+  &:focus {
+    outline: none;
+    border-color: rgba($ink, 0.4);
+  }
+
+  &::placeholder {
+    color: rgba($ink, 0.4);
+  }
+}
+
+// Buttons
+button {
+  border-radius: $radius-lg;
+  padding: $spacing-2 $spacing-4;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  transition: all $transition-base;
+  border: none;
+  cursor: pointer;
+
+  &.primary {
+    background-color: $sun;
+    color: $ink;
+
+    &:hover {
+      background-color: $amber;
+    }
+  }
+
+  &.secondary {
+    border: 1px solid $dusk;
+    background-color: transparent;
+    color: $ink;
+
+    &:hover {
+      background-color: $dusk;
+      color: $white;
+    }
+  }
+}

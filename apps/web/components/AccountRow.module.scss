@@ -1,0 +1,218 @@
+@import '../styles/design-tokens';
+
+.accountRow {
+  display: grid;
+  grid-template-columns: 200px 1fr 160px 40px;
+  align-items: center;
+  gap: $space-4;
+  padding: $space-4;
+  background: $bg-secondary;
+  border: 1px solid $border-medium;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $bg-elevated;
+    border-color: $border-strong;
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 160px 1fr 120px 32px;
+    gap: $space-3;
+    padding: $space-3;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: $space-3;
+  }
+}
+
+.cardColumn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
+}
+
+.balanceColumn {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  @media (max-width: 600px) {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.balanceLabel {
+  font-size: $text-xs;
+  font-weight: $font-medium;
+  color: $text-tertiary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.balanceValue {
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+  color: $text-primary;
+  font-variant-numeric: tabular-nums;
+
+  &.negative {
+    color: $error;
+  }
+
+  @media (max-width: 900px) {
+    font-size: $text-xl;
+  }
+}
+
+.creditLimit {
+  font-size: $text-xs;
+  color: $text-tertiary;
+}
+
+.metricsColumn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
+}
+
+// Utilization (for credit cards)
+.utilizationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $space-1;
+  min-width: 100px;
+
+  @media (max-width: 600px) {
+    align-items: center;
+  }
+}
+
+.utilizationLabel {
+  font-size: $text-xs;
+  color: $text-tertiary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.utilizationValue {
+  font-size: $text-lg;
+  font-weight: $font-bold;
+
+  &.success {
+    color: $success;
+  }
+
+  &.warning {
+    color: $warning;
+  }
+
+  &.danger {
+    color: $error;
+  }
+}
+
+.utilizationBar {
+  width: 100%;
+  height: 4px;
+  background: $bg-elevated;
+  border-radius: $radius-full;
+  overflow: hidden;
+}
+
+.utilizationFill {
+  height: 100%;
+  border-radius: $radius-full;
+  transition: width $transition-slow;
+
+  &.success {
+    background: $success;
+  }
+
+  &.warning {
+    background: $warning;
+  }
+
+  &.danger {
+    background: $error;
+  }
+}
+
+// Change percentage (for debit/checking/savings)
+.changeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $space-1;
+
+  @media (max-width: 600px) {
+    align-items: center;
+  }
+}
+
+.changeLabel {
+  font-size: $text-xs;
+  color: $text-tertiary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.changeValue {
+  font-size: $text-lg;
+  font-weight: $font-bold;
+
+  &.positive {
+    color: $success;
+  }
+
+  &.negative {
+    color: $error;
+  }
+}
+
+// Loan specific
+.loanContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $space-1;
+
+  @media (max-width: 600px) {
+    align-items: center;
+  }
+}
+
+.loanValue {
+  font-size: $text-lg;
+  font-weight: $font-bold;
+  color: $text-secondary;
+}
+
+.chevronColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-tertiary;
+  transition: color $transition-fast;
+
+  .accountRow:hover & {
+    color: $text-primary;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+}

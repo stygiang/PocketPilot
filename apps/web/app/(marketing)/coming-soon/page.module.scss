@@ -1,0 +1,144 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.main {
+  position: relative;
+  min-height: 100svh;
+  color: $ink;
+}
+
+.backgroundImage {
+  object-fit: cover;
+  object-position: 80% center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba($black, 0.25);
+}
+
+.decorCircle1 {
+  pointer-events: none;
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: $radius-full;
+  border: 1px solid rgba($white, 0.3);
+}
+
+.decorCircle2 {
+  pointer-events: none;
+  position: absolute;
+  left: 2.5rem;
+  top: 2.5rem;
+  height: 4rem;
+  width: 4rem;
+  border-radius: $radius-full;
+  border: 1px solid rgba($white, 0.3);
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  min-height: 100svh;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+.section {
+  width: 100%;
+  max-width: 64rem;
+  text-align: center;
+  color: $white;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 3rem;
+  width: auto;
+}
+
+.heading {
+  margin-top: 2rem;
+  font-size: $font-size-4xl;
+  font-family: $font-display;
+  line-height: 1.2;
+
+  @include md {
+    font-size: $font-size-5xl;
+  }
+}
+
+.description {
+  margin: $spacing-4 auto 0;
+  max-width: 42rem;
+  font-size: $font-size-sm;
+  color: rgba($white, 0.8);
+
+  @include md {
+    font-size: $font-size-base;
+  }
+}
+
+.form {
+  margin: 2rem auto 0;
+  display: flex;
+  width: 100%;
+  max-width: 36rem;
+  flex-direction: column;
+  gap: $spacing-3;
+
+  @include sm {
+    flex-direction: row;
+  }
+}
+
+.emailInput {
+  height: 3rem;
+  flex: 1;
+  border-radius: $radius-full;
+  border: 1px solid rgba($white, 0.4);
+  background-color: rgba($white, 0.9);
+  padding: 0 $spacing-4;
+  font-size: $font-size-sm;
+  color: $ink;
+
+  &::placeholder {
+    color: rgba($ink, 0.5);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.submitButton {
+  height: 3rem;
+  border-radius: $radius-full;
+  background-color: $sun;
+  padding: 0 $spacing-6;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $ink;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.message {
+  margin-top: $spacing-4;
+  font-size: $font-size-xs;
+  color: rgba($white, 0.8);
+}

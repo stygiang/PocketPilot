@@ -1,0 +1,394 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 1.5rem;
+}
+
+.main {
+  padding-bottom: 6rem;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba($black, 0.05);
+  background-color: rgba($white, 0.8);
+  @include backdrop-blur;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-4 0;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 3rem;
+  width: auto;
+}
+
+.navLinks {
+  display: none;
+  align-items: center;
+  gap: $spacing-6;
+  font-size: $font-size-sm;
+  color: rgba($ink, 0.7);
+
+  @include md {
+    display: flex;
+  }
+}
+
+.navLinkDesktop {
+  border-radius: $radius-full;
+  background-color: $ink;
+  padding: $spacing-2 $spacing-5;
+  font-size: $font-size-sm;
+  color: $white;
+}
+
+.navMobile {
+  @include md {
+    display: none;
+  }
+}
+
+.navLinkMobile {
+  border-radius: $radius-full;
+  background-color: $ink;
+  padding: $spacing-2 $spacing-4;
+  font-size: $font-size-xs;
+  color: $white;
+}
+
+.heroSection {
+  padding-top: 3rem;
+}
+
+.heroCard {
+  border-radius: 1.75rem;
+  background-color: #f3eee6;
+  padding: 2.5rem 2rem;
+
+  @include md {
+    padding: 3rem;
+  }
+}
+
+.heroGrid {
+  display: grid;
+  align-items: center;
+  gap: 2.5rem;
+
+  @include md {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
+.heroHeading {
+  font-size: $font-size-4xl;
+  font-family: $font-display;
+  color: $ink;
+
+  @include md {
+    font-size: $font-size-5xl;
+  }
+}
+
+.heroText {
+  margin-top: $spacing-4;
+  font-size: $font-size-sm;
+  color: rgba($ink, 0.7);
+
+  @include md {
+    font-size: $font-size-base;
+  }
+}
+
+.heroActions {
+  margin-top: $spacing-6;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-3;
+}
+
+.emailInput {
+  display: flex;
+  width: 100%;
+  max-width: 28rem;
+  align-items: center;
+  border-radius: $radius-full;
+  background-color: $white;
+  padding: $spacing-2 $spacing-4;
+  box-shadow: $shadow-sm;
+
+  input {
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    font-size: $font-size-sm;
+    color: $ink;
+
+    &::placeholder {
+      color: rgba($ink, 0.4);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.ctaButton {
+  border-radius: $radius-full;
+  background-color: $sun;
+  padding: $spacing-3 $spacing-6;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $ink;
+}
+
+.heroImageWrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 28rem;
+}
+
+.decorCircle1 {
+  position: absolute;
+  left: -1.5rem;
+  top: -1.5rem;
+  height: 4rem;
+  width: 4rem;
+  border-radius: $radius-full;
+  background-color: rgba($sun, 0.6);
+}
+
+.decorCircle2 {
+  position: absolute;
+  right: -1.5rem;
+  bottom: 2.5rem;
+  height: 3rem;
+  width: 3rem;
+  border-radius: $radius-full;
+  background-color: rgba($amber, 0.6);
+}
+
+.demoCard {
+  border-radius: 1.75rem;
+  border: 1px solid rgba($black, 0.1);
+  background-color: $white;
+  padding: $spacing-6;
+  box-shadow: $shadow-lg;
+}
+
+.demoLabel {
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba($ink, 0.5);
+}
+
+.demoAmount {
+  margin-top: $spacing-3;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-semibold;
+  color: $ink;
+}
+
+.demoSubtext {
+  margin-top: $spacing-2;
+  font-size: $font-size-sm;
+  color: rgba($ink, 0.6);
+}
+
+.demoStats {
+  margin-top: $spacing-6;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+  font-size: $font-size-sm;
+  color: rgba($ink, 0.7);
+}
+
+.demoStatItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: $radius-2xl;
+  border: 1px solid rgba($black, 0.1);
+  padding: $spacing-2 $spacing-4;
+}
+
+.howSection {
+  padding: 4rem 0;
+}
+
+.sectionHeader {
+  margin: 0 auto;
+  max-width: 48rem;
+  text-align: center;
+}
+
+.sectionHeading {
+  font-size: $font-size-3xl;
+  font-family: $font-display;
+  color: $ink;
+
+  @include md {
+    font-size: $font-size-4xl;
+  }
+}
+
+.sectionText {
+  margin-top: $spacing-4;
+  font-size: $font-size-sm;
+  color: rgba($ink, 0.7);
+
+  @include md {
+    font-size: $font-size-base;
+  }
+}
+
+.featuresGrid {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: $spacing-6;
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.featureCard {
+  border-radius: $radius-2xl;
+  border: 1px solid rgba($black, 0.1);
+  background-color: rgba($white, 0.8);
+  padding: $spacing-6;
+  font-size: $font-size-sm;
+  color: rgba($ink, 0.7);
+  box-shadow: $shadow-sm;
+}
+
+.featureTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $ink;
+}
+
+.featureDescription {
+  margin-top: $spacing-2;
+}
+
+.downloadSection {
+  padding: 4rem 0;
+}
+
+.downloadCard {
+  border-radius: 1.75rem;
+  border: 1px solid rgba($black, 0.1);
+  background-color: rgba($white, 0.9);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: $shadow-sm;
+}
+
+.downloadHeading {
+  font-size: $font-size-3xl;
+  font-family: $font-display;
+  color: $ink;
+
+  @include md {
+    font-size: $font-size-4xl;
+  }
+}
+
+.downloadText {
+  margin-top: $spacing-3;
+  font-size: $font-size-sm;
+  color: rgba($ink, 0.7);
+
+  @include md {
+    font-size: $font-size-base;
+  }
+}
+
+.downloadActions {
+  margin-top: $spacing-6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-3;
+}
+
+.downloadButton {
+  border-radius: $radius-full;
+  background-color: $ink;
+  padding: $spacing-3 $spacing-6;
+  font-size: $font-size-sm;
+  color: $white;
+}
+
+.downloadButtonSecondary {
+  border-radius: $radius-full;
+  border: 1px solid $ink;
+  padding: $spacing-3 $spacing-6;
+  font-size: $font-size-sm;
+  color: $ink;
+}
+
+.footer {
+  border-top: 1px solid rgba($black, 0.1);
+  padding: 2.5rem 0;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-6;
+
+  @include md {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+
+  img {
+    height: 2rem;
+    width: auto;
+  }
+}
+
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-4;
+  font-size: $font-size-sm;
+  color: rgba($black, 0.6);
+}
+
+.copyright {
+  margin-top: $spacing-6;
+  font-size: $font-size-xs;
+  color: rgba($black, 0.4);
+}

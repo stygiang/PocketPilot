@@ -1,0 +1,274 @@
+@import '../../../styles/design-tokens';
+
+.main {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a2942 0%, #0a0e1a 100%);
+
+  // Add a subtle pattern or illustration background
+  background-image:
+    radial-gradient(at 20% 30%, rgba(74, 143, 231, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 70%, rgba(139, 92, 246, 0.12) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
+  z-index: 0;
+}
+
+.backgroundOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 14, 26, 0.4) 100%);
+}
+
+.demoButton {
+  position: absolute;
+  top: $space-6;
+  right: $space-6;
+  padding: $space-2 $space-4;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $radius-full;
+  color: $text-primary;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  cursor: pointer;
+  transition: all $transition-base;
+  z-index: 10;
+  backdrop-filter: blur($blur-md);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: $space-12 $space-6 $space-8;
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-8 $space-4 $space-6;
+  }
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tagline {
+  font-size: $text-5xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  text-align: center;
+  color: $text-primary;
+  letter-spacing: $tracking-tight;
+  margin-bottom: $space-12;
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: $text-4xl;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.appleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  padding: $space-4 $space-6;
+  background: $text-primary;
+  color: $text-inverse;
+  border: none;
+  border-radius: $radius-xl;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background: darken($text-primary, 5%);
+    transform: translateY(-1px);
+    box-shadow: $shadow-lg;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.appleIcon {
+  font-size: $text-xl;
+}
+
+.emailButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4 $space-6;
+  background: $brand-primary;
+  color: $text-primary;
+  border: none;
+  border-radius: $radius-xl;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $brand-primary-hover;
+    transform: translateY(-1px);
+    box-shadow: $glow-blue;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.signInLink {
+  text-align: center;
+  font-size: $text-sm;
+  color: $text-secondary;
+  margin-top: $space-2;
+
+  a {
+    color: $text-primary;
+    font-weight: $font-medium;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $brand-primary;
+    }
+  }
+}
+
+// Demo Mode Modal
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur($blur-lg);
+  z-index: $z-modal-backdrop;
+  animation: fadeIn $transition-base;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - #{$space-8});
+  max-width: 400px;
+  background: $bg-elevated;
+  border: 1px solid $border-medium;
+  border-radius: $radius-2xl;
+  padding: $space-8;
+  z-index: $z-modal;
+  animation: slideUp $transition-base;
+}
+
+.modalTitle {
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+  color: $text-primary;
+  margin-bottom: $space-4;
+  text-align: center;
+}
+
+.modalText {
+  font-size: $text-base;
+  color: $text-secondary;
+  line-height: $leading-relaxed;
+  text-align: center;
+  margin-bottom: $space-8;
+}
+
+.modalActions {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.modalCancel {
+  padding: $space-3 $space-6;
+  background: transparent;
+  color: $text-secondary;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $text-base;
+  font-weight: $font-medium;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $bg-tertiary;
+    color: $text-primary;
+  }
+}
+
+.modalConfirm {
+  padding: $space-4 $space-6;
+  background: $brand-primary;
+  color: $text-primary;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover:not(:disabled) {
+    background: $brand-primary-hover;
+    box-shadow: $glow-blue;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}

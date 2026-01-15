@@ -1,0 +1,174 @@
+@import '../styles/design-tokens';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: $text-lg;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0;
+}
+
+.link {
+  font-size: $text-sm;
+  color: $text-tertiary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $text-secondary;
+  }
+}
+
+.summary {
+  display: flex;
+  gap: $space-6;
+}
+
+.asset,
+.debt {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  .asset & {
+    background: $brand-primary;
+  }
+
+  .debt & {
+    background: $category-shopping;
+  }
+}
+
+.label {
+  font-size: $text-sm;
+  color: $text-secondary;
+}
+
+.amounts {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.amountRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.amount {
+  display: flex;
+  align-items: baseline;
+  gap: $space-2;
+}
+
+.currency {
+  font-size: $text-xl;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.value {
+  font-size: $text-3xl;
+  font-weight: 700;
+  color: $text-primary;
+
+  @media (max-width: 768px) {
+    font-size: $text-2xl;
+  }
+}
+
+.change {
+  padding: $space-1 $space-2;
+  border-radius: $radius-md;
+  font-size: $text-xs;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+
+  &Positive {
+    background: rgba($category-income, 0.1);
+    color: $category-income;
+  }
+
+  &Negative {
+    background: rgba($category-bills, 0.1);
+    color: $category-bills;
+  }
+}
+
+.chart {
+  margin: $space-4 0;
+}
+
+.progressBar {
+  display: flex;
+  height: 8px;
+  border-radius: $radius-full;
+  overflow: hidden;
+  background: $bg-tertiary;
+}
+
+.assetsBar {
+  background: $brand-primary;
+  transition: width 0.3s ease;
+}
+
+.debtsBar {
+  background: $category-shopping;
+  transition: width 0.3s ease;
+}
+
+.timeline {
+  display: flex;
+  gap: $space-2;
+  margin-top: auto;
+}
+
+.timelineBtn {
+  flex: 1;
+  padding: $space-1 $space-2;
+  background: transparent;
+  border: 1px solid $border-medium;
+  border-radius: $radius-md;
+  color: $text-tertiary;
+  font-size: $text-xs;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: $bg-elevated;
+    color: $text-secondary;
+  }
+
+  &Active {
+    background: $bg-elevated;
+    color: $text-primary;
+    border-color: $text-tertiary;
+  }
+
+  @media (max-width: 768px) {
+    padding: $space-2;
+    font-size: $text-xs;
+  }
+}

@@ -1,0 +1,87 @@
+@import '../styles/design-tokens';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: $text-lg;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0;
+}
+
+.link {
+  font-size: $text-sm;
+  color: $text-tertiary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $text-secondary;
+  }
+}
+
+.recurringList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: $space-3;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.recurring {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-4;
+  background: $bg-elevated;
+  border: 1px solid $border-medium;
+  border-radius: $radius-md;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    border-color: lighten($border-medium, 10%);
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+
+  &DueSoon {
+    background: rgba($category-bills, 0.05);
+    border-color: $category-bills;
+  }
+}
+
+.recurringInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.recurringName {
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.recurringDate {
+  font-size: $text-xs;
+  color: $text-tertiary;
+}
+
+.recurringAmount {
+  font-size: $text-lg;
+  font-weight: 700;
+  color: $text-primary;
+}

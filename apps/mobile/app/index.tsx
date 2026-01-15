@@ -1,5 +1,6 @@
 import { Redirect } from 'expo-router';
 
 export default function Index() {
-  return <Redirect href="/(app)/dashboard" />;
+  // Redirect to new Copilot-inspired welcome screen
+  return <Redirect href="/auth/welcome" />;
 }

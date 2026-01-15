@@ -1,0 +1,107 @@
+@import '../../styles/design-tokens';
+
+.transactionsContainer {
+  display: flex;
+  min-height: 100vh;
+  background: $bg-primary;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.pageWrapper {
+  display: flex;
+  flex: 1;
+  margin-left: 240px;
+  min-height: 100vh;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    flex-direction: column;
+  }
+}
+
+.mainContent {
+  flex: 1;
+  min-width: 0;
+  padding: $space-6;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    padding: $space-4;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $space-6;
+  gap: $space-4;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.title {
+  font-size: $text-3xl;
+  font-weight: 700;
+  color: $text-primary;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: $text-2xl;
+  }
+}
+
+.subtitle {
+  font-size: $text-sm;
+  color: $text-tertiary;
+  margin: 0;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-3 $space-4;
+  background: $brand-primary;
+  border: none;
+  border-radius: $radius-md;
+  color: white;
+  font-size: $text-sm;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: $brand-primary-hover;
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.addIcon {
+  font-size: $text-lg;
+  font-weight: 700;
+}

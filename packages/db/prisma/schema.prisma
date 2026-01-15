@@ -21,6 +21,22 @@ enum SubscriptionStatus {
   CANCELED
 }
 
+enum AccountType {
+  CREDIT_CARD
+  DEBIT
+  CHECKING
+  SAVINGS
+  INVESTMENT
+  LOAN
+  CASH
+  OTHER
+}
+
+enum TrackingMode {
+  MANUAL
+  AUTOMATIC
+}
+
 model User {
   id                 String              @id @default(cuid())
   email              String              @unique
@@ -32,6 +48,8 @@ model User {
   bills              Bill[]
   expenses           Expense[]
   subscription       Subscription?
+  accounts           Account[]
+  transactions       Transaction[]
 }
 
 model Settings {
@@ -102,4 +120,75 @@ model Subscription {
   status                 SubscriptionStatus @default(FREE)
   currentPeriodEnd       DateTime?
   user                   User               @relation(fields: [userId], references: [id])
+}
+
+model Account {
+  id                String        @id @default(cuid())
+  userId            String
+  name              String        // e.g., "Chase Sapphire", "Fidelity Brokerage"
+  type              AccountType
+  trackingMode      TrackingMode  @default(MANUAL)
+
+  // Institution details
+  institutionName   String?       // e.g., "Chase", "Bank of America"
+  institutionLogo   String?       // URL to bank logo
+
+  // Card/Account details
+  lastFourDigits    String?       // Last 4 digits for display
+  accountNumber     String?       // Encrypted full account number (for auto-tracking)
+  routingNumber     String?       // For bank accounts
+
+  // Balance tracking
+  currentBalanceCents    Int      @default(0)
+  availableBalanceCents  Int?     // For credit cards: available credit
+  creditLimitCents       Int?     // For credit cards: total credit limit
+  interestRatePercent    Float?   // APR for credit cards/loans
+
+  // For investment accounts
+  totalValueCents        Int?     // Total portfolio value
+  totalGainLossCents     Int?     // Overall gain/loss
+
+  // Metadata
+  color             String?       // Custom color for the card
+  isHidden          Boolean       @default(false)
+  isPrimary         Boolean       @default(false)
+
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  user              User          @relation(fields: [userId], references: [id])
+  transactions      Transaction[]
+
+  @@index([userId])
+  @@index([userId, type])
+}
+
+model Transaction {
+  id              String    @id @default(cuid())
+  userId          String
+  accountId       String
+
+  amountCents     Int
+  description     String
+  merchantName    String?
+  category        String?
+
+  date            DateTime
+  isRecurring     Boolean   @default(false)
+  isPending       Boolean   @default(false)
+  needsReview     Boolean   @default(false)
+
+  // For categorization
+  tags            String[]  @default([])
+  notes           String?
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  user            User      @relation(fields: [userId], references: [id])
+  account         Account   @relation(fields: [accountId], references: [id])
+
+  @@index([userId, date])
+  @@index([accountId, date])
+  @@index([userId, category])
 }

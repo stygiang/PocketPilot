@@ -1,0 +1,42 @@
+:root {
+  color-scheme: light;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-body;
+  background-color: $sand;
+  color: $ink;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at top, rgba(246, 198, 71, 0.25), transparent 60%),
+    linear-gradient(135deg, rgba(226, 169, 59, 0.2), transparent 60%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
