@@ -82,12 +82,12 @@ export default function SignUpPage() {
 
   const getStepTitle = () => {
     if (step === 'name') return 'Create your account';
-    if (step === 'email') return 'What's your email?';
+    if (step === 'email') return "What's your email?";
     return 'Create a password';
   };
 
   const getStepSubtitle = () => {
-    if (step === 'name') return 'Let's start with your name';
+    if (step === 'name') return "Let's start with your name";
     if (step === 'email') return 'We'll use this to sign you in';
     return 'Choose a secure password';
   };
