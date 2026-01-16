@@ -5,10 +5,21 @@ import SideNavigation from '@/components/SideNavigation';
 import AccountRow from '@/components/AccountRow';
 import AddAccountModal from '@/components/AddAccountModal';
 import styles from './page.module.scss';
-import { AccountType } from '@/components/AccountCard';
+import { AccountCardProps, AccountType } from '@/components/AccountCard';
+
+type AccountSummary = Omit<AccountCardProps, 'onClick'> & {
+  previousBalanceCents?: number;
+};
 
 // Mock data - replace with API calls
-const mockAccounts = {
+const mockAccounts: {
+  creditCards: AccountSummary[];
+  debitCards: AccountSummary[];
+  savings: AccountSummary[];
+  investments: AccountSummary[];
+  loans: AccountSummary[];
+  other: AccountSummary[];
+} = {
   creditCards: [
     {
       id: '1',
@@ -106,7 +117,7 @@ const mockAccounts = {
 };
 
 // Calculate totals
-const calculateTotal = (accounts: typeof mockAccounts.creditCards) => {
+const calculateTotal = (accounts: AccountSummary[]) => {
   return accounts.reduce((sum, acc) => sum + acc.currentBalanceCents, 0);
 };
 
@@ -122,7 +133,7 @@ const formatCurrency = (cents: number): string => {
 
 interface AccountSectionProps {
   title: string;
-  accounts: typeof mockAccounts.creditCards;
+  accounts: AccountSummary[];
   totalLabel: string;
   emptyMessage: string;
   onAddClick: () => void;
